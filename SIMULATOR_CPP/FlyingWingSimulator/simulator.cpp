@@ -160,7 +160,7 @@ int main()
 	
 	// Initialize Quaternion Angles, Alpha, Beta, Velocity
 	airplane.plane.quat = euler2Quaternion(airplane.plane.eul);
-	airplane.update_va();
+	airplane.update_va_alpha_beta();
 
 	// Declare state variable x
 	Matrix x = 
@@ -231,8 +231,7 @@ int main()
 		airplane.plane.eul = quaternion2Euler(Quaternion(x[7][0], x[8][0], x[9][0], x[10][0]));
 
 		// Update Velocity, Alpha, and Beta
-		airplane.update_va();
-		airplane.update_beta_alpha();
+		airplane.update_va_alpha_beta();
 
 		// Write data to txt file
 		for (int n = 0; n < 6; n++)
