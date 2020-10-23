@@ -90,9 +90,12 @@ void Plane_Mechanics::update_comb_forces()
 	comb_forces.Tz = lat_comps.TzLat;
 }
 
-void Plane_Mechanics::update_va_beta_alpha()
+void Plane_Mechanics::update_va()
 {
 	plane.Va = sqrt(pow(plane.u, 2) + pow(plane.v, 2) + pow(plane.w, 2));
+}
+void Plane_Mechanics::update_beta_alpha()
+{
 	plane.alpha = atan(plane.w / plane.u);
 	plane.beta = asin(plane.v / plane.Va);
 }

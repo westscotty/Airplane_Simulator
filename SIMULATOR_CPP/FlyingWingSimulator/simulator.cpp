@@ -50,7 +50,6 @@ void ReceiveData(float& j_x, float& j_y, float& pot, int& once)
 		QueryPerformanceCounter(&timeOldj_x);
 		QueryPerformanceCounter(&timeOldj_y);
 		QueryPerformanceCounter(&timeOldpot);
-		//QueryPerformanceCounter(&timeOldy2);
 		// Find frequency in order to time change in time
 		QueryPerformanceFrequency(&timeFreq);
 		once = 1;
@@ -139,19 +138,19 @@ void autoConnect()
 int main()
 {
 	Plane_Mechanics airplane;
-	float time = 50.0f;   // max time to run
-	float dt = 0.005f; // time step   ----> calculate this!
-	float N = time / dt;  // total time steps
+	//float time = 50.0f;   // max time to run
+	float dt = 0.005f;    // time step   ----> calculate this!
+	//float N = time / dt;  // total time steps
 
 	// Set up serial connnection to arduino controller !!!!!
-	//Connect C++ to arduino
+	// Connect C++ to arduino
 	// Arduino SerialPort object
 	arduino = new SerialPort(portName);
 	autoConnect();
 
 	// Initialize text file for storing data and open file
 	ofstream myFile;
-	const char* path = "C:\\Users\\Wes\\Documents\\BYUI\\Fall 2020\\ME 490R\\SIMULATOR_CPP\\FlyingWingSimulator\\file_write.txt";
+	const char* path = "C:\\Users\\Wes\\Documents\\wsl_share\\Airplane_Simulator\\SIMULATOR_CPP\\FlyingWingSimulator\\file_write.txt";
 	myFile.open(path);
 	myFile << "pn, pe, pd, u, v, w, throttle, el_Left, el_Right \n";
 
@@ -161,7 +160,7 @@ int main()
 	
 	// Initialize Quaternion Angles, Alpha, Beta, Velocity
 	airplane.plane.quat = euler2Quaternion(airplane.plane.eul);
-	//airplane.update_va_beta_alpha();
+	airplane.update_va();
 
 	// Declare state variable x
 	Matrix x = 
@@ -232,7 +231,8 @@ int main()
 		airplane.plane.eul = quaternion2Euler(Quaternion(x[7][0], x[8][0], x[9][0], x[10][0]));
 
 		// Update Velocity, Alpha, and Beta
-		airplane.update_va_beta_alpha();
+		airplane.update_va();
+		airplane.update_beta_alpha();
 
 		// Write data to txt file
 		for (int n = 0; n < 6; n++)
@@ -241,9 +241,8 @@ int main()
 		}
 		myFile << pot << ", " << j_x << ", " << j_y << "\n";
 
-
 		// Check if ground is too close ---> plane crash
-		if (airplane.plane.pd >= 0)
+		if (airplane.plane.pd > 0)
 		{
 			std::cout << "\nYou need flying lessons!\n";
 			exit(0);

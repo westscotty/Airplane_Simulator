@@ -33,8 +33,8 @@ struct Plane_Mechanics
 		// Initial Condition Parameters
 		float pn = 0.0f;             // (m)initial North position
 		float pe = 0.0f;             // (m)initial East position
-		float pd = 0.0f;             // (m)initial Down position(negative altitude)
-		float u = 10.0f;              // (m / s) initial velocity along body x - axis
+		float pd = -10.0f;             // (m)initial Down position(negative altitude)
+		float u = 0.0001f;              // (m / s) initial velocity along body x - axis
 		float v = 0.0f;              // (m / s) initial velocity along body y - axis
 		float w = 0.0f;              // (m / s) initial velocity along body z - axis
 		float p = 0.0f;              // (rad/s) initial body frame roll drate
@@ -98,6 +98,7 @@ struct Plane_Mechanics
 
 	// Update Vals
 	void update_comb_forces();
-	void update_va_beta_alpha();
+	void update_beta_alpha();
+	void update_va();
 	void convert_elevons();
 };
