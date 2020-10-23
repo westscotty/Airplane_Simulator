@@ -241,11 +241,11 @@ int main()
 		myFile << pot << ", " << j_x << ", " << j_y << "\n";
 
 		// Check if ground is too close ---> plane crash
-		if (airplane.plane.pd > 0)
-		{
-			std::cout << "\nYou need flying lessons!\n";
-			exit(0);
-		}
+		//if (airplane.plane.pd > 0)
+		//{
+		//	std::cout << "\nYou need flying lessons!\n";
+		//	exit(0);
+		//}
 		
 		// Display every other data value --> speeds up data writing
 		// Display data to screen
