@@ -60,7 +60,7 @@ void Plane_Mechanics::propeller_thrust_torques()
 {
 	float Vin = V_max * control_vals.del_t;  //Voltage into the motor
 
-	// The following are aa, bb, and cc coefficients for quadratic equation --> ax ^ 2 + bx + c = 0
+	// The following are aa, bb, and cc coefficients for quadratic equation ---> ax ^ 2 + bx + c = 0
 	float aa = C_Q0 * rho * pow(D_prop, 5) / pow((2.0f * M_PI), 2);
 	float bb = C_Q1 * plane.Va * rho * pow(D_prop, 4) / (2.0f * M_PI) + pow(KQ, 2) / R_motor;
 	float cc = rho * pow(D_prop, 3) * C_Q2 * pow(plane.Va, 2) - KQ / R_motor * Vin + KQ * i0;

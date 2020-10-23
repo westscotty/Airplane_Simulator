@@ -249,11 +249,11 @@ int main()
 		
 		// Display every other data value --> speeds up data writing
 		// Display data to screen
-		for (int n = 0; n < 13; n++)
+		for (int n = 0; n < 6; n++)
 		{
 				std::cout << x[n][0] << ", ";
 		}
-		std::cout << std::endl;
+		std::cout << pot << ", " << j_x << ", " << j_y << "\n";
 	}
 
 	// Close txt file
