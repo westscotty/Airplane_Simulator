@@ -18,7 +18,7 @@ typedef std::vector<std::vector<float>> Matrix;
 /////////////////////////////////////////////
 //Define Physical Airframe constants
 static const float gravity = 9.8072f;       // m/s^2 gravity
-static const float mass = 1.0;           // kg airplane mass
+static const float mass = 0.9f;           // kg airplane mass
 static const float Jx = 0.1147f;             // (kg m2) airplane x moment of inertia
 static const float Jy = 0.0576f;             // (kg m2) airplane y moment of inertia
 static const float Jz = 0.1712f;             // (kg m2) airplane z moment of inertia
@@ -66,19 +66,19 @@ static const float C_Y_beta = -0.07359f;       //  Lateral force coefficient
 static const float C_Y_p = 0.0f;            //  Lateral force coefficient
 static const float C_Y_r = 0.0f;            //  Lateral force coefficient
 static const float C_Y_delta_a = 0.0f;    //  Lateral force coefficient
-static const float C_Y_delta_r = 0.01f;     //  Lateral force coefficient                  ----------------? confirm
+static const float C_Y_delta_r = 0.0f;     //  Lateral force coefficient                  ----------------? confirm
 static const float C_ell_0 = 0.0f;          //  Lateral roll torque coefficient
-static const float C_ell_beta = -0.13f;     //  Lateral roll torque coefficient
+static const float C_ell_beta = -0.02854f;     //  Lateral roll torque coefficient
 static const float C_ell_p = -0.3209f;        //  Lateral roll torque coefficient
 static const float C_ell_r = 0.03066f;        //  Lateral roll torque coefficient
 static const float C_ell_delta_a = 0.1682f;   //  Lateral roll torque coefficient
-static const float C_ell_delta_r = 0.01f;//  Lateral roll torque coefficient               ----------------? confirm
+static const float C_ell_delta_r = 0.0f;//  Lateral roll torque coefficient               ----------------? confirm
 static const float C_n_0 = 0.0f;            //  Lateral yaw torque coefficient
-static const float C_n_beta = -0.00040f;       //  Lateral yaw torque coefficient
+static const float C_n_beta = -0.0004f;       //  Lateral yaw torque coefficient
 static const float C_n_p = -0.01297f;         //  Lateral yaw torque coefficient
 static const float C_n_r = -0.00434f;         //  Lateral yaw torque coefficient
 static const float C_n_delta_a = -0.00328f;   //  Lateral yaw torque coefficient 
-static const float C_n_delta_r = 0.01f;   // Lateral yaw torque coefficient               ----------------? confirm
+static const float C_n_delta_r = 0.0f;   // Lateral yaw torque coefficient               ----------------? confirm
 static const float C_prop = 1.0f;
 static const float M = 50.0f;               // blend function parameter
 static const float epsilon = 0.1529f;
@@ -101,10 +101,10 @@ static const float ncells = 3.0f;         // Number of cells in the battery
 static const float V_max = 3.7f * ncells;  // max voltage for specified number of battery cells 
 
 //Coeffiecients from prop_data fit
-static const float C_Q2 = -0.015729f;   // -0.01664f;       // Propeller torque fitting parameter ----------------? confirm
-static const float C_Q1 = 0.0031409f;   //  0.004970f;       // Propeller torque fitting parameter ----------------? confirm
-static const float C_Q0 = 0.006199f;    //  0.005230f;       // Propeller torque fitting parameter ----------------? confirm
+static const float C_Q2 = -0.01664f; // Propeller torque fitting parameter* /
+static const float C_Q1 = 0.004970f; // Propeller torque fitting parameter* /
+static const float C_Q0 = 0.005230f; // Propeller torque fitting parameter* /
 
-static const float C_T2 = -0.047394f;  // -0.1079f;         // Propeller thrust fitting parameter ----------------? confirm
-static const float C_T1 = -0.13803f;   // -0.06044f;        // Propeller thrust fitting parameter ----------------? confirm
-static const float C_T0 = 0.11221f;    //  0.09357f;         // Propeller thrust fitting parameter ----------------? confirm
+static const float C_T2 = -0.1079f; // Propeller thrust fitting parameter* /
+static const float C_T1 = -0.06044f; // Propeller thrust fitting parameter* /
+static const float C_T0 = 0.09357f; // Propeller thrust fitting parameter* /
