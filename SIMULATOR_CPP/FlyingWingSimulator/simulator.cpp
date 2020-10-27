@@ -198,9 +198,9 @@ void Simulator::run_simulator()
 	autoConnect();
 
 	// Initialize text file for storing data and open file
-	ofstream myFile;
-	myFile.open(path);
-	myFile << "pn, pe, pd, u, v, w, throttle, el_Left, el_Right \n";
+	//ofstream myFile;
+	//myFile.open(path);
+	//myFile << "pn, pe, pd, u, v, w, throttle, el_Left, el_Right \n";
 	
 	// Initialize Quaternion Angles, Alpha, Beta, Velocity
 	airplane.plane.quat = euler2Quaternion(airplane.plane.eul);
@@ -229,13 +229,13 @@ void Simulator::run_simulator()
 		rk4_method(x);
 
 		// Write txt file for saved data
-		for (int n = 0; n < 6; n++)
-		{
-			myFile << x[n][0] << ", ";
-		}
-		myFile << pot << ", " << j_x << ", " << j_y << "\n";
+		//for (int n = 0; n < 6; n++)
+		//{
+			//myFile << x[n][0] << ", ";
+		//}
+		//myFile << pot << ", " << j_x << ", " << j_y << "\n";
 	}
 
 	// Close txt file
-	myFile.close();
+	//myFile.close();
 }
