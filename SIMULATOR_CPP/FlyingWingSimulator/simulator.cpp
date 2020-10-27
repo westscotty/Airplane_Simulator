@@ -132,7 +132,7 @@ void Simulator::autoConnect()
 }
 
 // rk4 method
-void Simulator::rk4_method(Matrix& x)
+void Simulator::rk4_method()
 {
 	// Read Values from Arduino Contoller
 	ReceiveData(j_x, j_y, pot, once);
@@ -207,26 +207,26 @@ void Simulator::run_simulator()
 	airplane.update_va_alpha_beta();
 
 	// Declare state variable x
-	x = 
-	{ 
-		{ airplane.plane.pn }, 
-		{ airplane.plane.pe }, 
-		{ airplane.plane.pd },
-		{ airplane.plane.u },
-		{ airplane.plane.v },
-		{ airplane.plane.w },
-		{ airplane.plane.quat.e0 },
-		{ airplane.plane.quat.e1 },
-		{ airplane.plane.quat.e2 },
-		{ airplane.plane.quat.e3 },
-		{ airplane.plane.p },
-		{ airplane.plane.q },
-		{ airplane.plane.r }
-	};
+	//x = 
+	//{ 
+	//	{ airplane.plane.pn }, 
+	//	{ airplane.plane.pe }, 
+	//	{ airplane.plane.pd },
+	//	{ airplane.plane.u },
+	//	{ airplane.plane.v },
+	//	{ airplane.plane.w },
+	//	{ airplane.plane.quat.e0 },
+	//	{ airplane.plane.quat.e1 },
+	//	{ airplane.plane.quat.e2 },
+	//	{ airplane.plane.quat.e3 },
+	//	{ airplane.plane.p },
+	//	{ airplane.plane.q },
+	//	{ airplane.plane.r }
+	//};
 
 	// Enter Simulation RK4 Loop
 	while (arduino->isConnected()) {
-		rk4_method(x);
+		rk4_method();
 
 		// Write txt file for saved data
 		//for (int n = 0; n < 6; n++)
