@@ -239,3 +239,10 @@ void Simulator::run_simulator()
 	// Close txt file
 	//myFile.close();
 }
+
+//pawn_constructor {
+//	arduino = new SerialPort(portName);
+//	autoConnect();
+//	airplane.plane.quat = euler2Quaternion(airplane.plane.eul);
+//	airplane.update_va_alpha_beta();
+//}
