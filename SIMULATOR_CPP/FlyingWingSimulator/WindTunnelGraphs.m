@@ -4,6 +4,8 @@ close all
 clear all
 clc
 
+opengl software
+
 %% test LiftAndDrag to see the effects of the elevator angle (delta_e)
 mex mexWindTunnel.cpp -R2018a
 test_type = 0;
