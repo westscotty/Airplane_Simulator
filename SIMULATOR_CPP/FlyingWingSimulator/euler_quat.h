@@ -43,11 +43,11 @@ struct Quaternion
 
 static Euler quaternion2Euler(const Quaternion& q)
 {
-    //double theta_fix = 2.0f * (q.e0 * q.e2 - q.e1 * q.e3);
-    //theta_fix = max(-1.0f, min(theta_fix, 1.0f));
+    double theta_fix = 2.0f * (q.e0 * q.e2 - q.e1 * q.e3);
+    theta_fix = max(-1.0f, min(theta_fix, 1.0f));
     // Quaternion Angles conversion to Euler Angles
     return Euler((atan2(2.0f * (q.e0 * q.e1 + q.e2 * q.e3), (pow(q.e0, 2) + pow(q.e3, 2) - pow(q.e1, 2) - pow(q.e2, 2)))),
-                 (asin(2.0f * (q.e0 * q.e2 - q.e1 * q.e3))),
+                 (asin(theta_fix)),
                  (atan2(2.0f * (q.e0 * q.e3 + q.e1 * q.e2), (pow(q.e0, 2) + pow(q.e1, 2) - pow(q.e2, 2) - pow(q.e3, 2)))));
 }
 

@@ -29,7 +29,7 @@ using namespace std;
 
 #define MAX_DATA_LENGTH 255
 char incomingData[MAX_DATA_LENGTH];
-const char* portName = "\\\\.\\COM6";
+const char* portName = "\\\\.\\COM5";
 
 //Gets data serially,unpacks it, and updates it based on how much time has passed
 void Simulator::ReceiveData(float& j_x, float& j_y, float& pot, int& once)
@@ -138,9 +138,9 @@ void Simulator::rk4_method()
 	ReceiveData(j_x, j_y, pot, once);
 
 	// Set values from controller
-	airplane.control_vals.el_left = j_y;
-	airplane.control_vals.el_right = j_x;
-	airplane.control_vals.del_t = pot;
+	airplane.control_vals.el_left = 0.0; // j_y;
+	airplane.control_vals.el_right = 0.0; // j_x;
+	airplane.control_vals.del_t = 0.5; // pot;
 	airplane.convert_elevons();
 
 	// Calculate Forces and Torques
@@ -176,17 +176,21 @@ void Simulator::rk4_method()
 	airplane.plane.p = x[10][0]; airplane.plane.q = x[11][0]; airplane.plane.r = x[12][0];
 
 	// Update Euler Angles
-	airplane.plane.eul = quaternion2Euler(Quaternion(x[7][0], x[8][0], x[9][0], x[10][0]));
+	airplane.plane.eul = quaternion2Euler(Quaternion(x[6][0], x[7][0], x[8][0], x[9][0]));
 
 	// Update Velocity, Alpha, and Beta
 	airplane.update_va_alpha_beta();
 
 	// Display data to screen
-	for (int n = 0; n < 6; n++)
-	{
-		std::cout << x[n][0] << ", ";
-	}
-	std::cout << pot << ", " << j_x << ", " << j_y << "\n";
+	//for (int n = 0; n < 13; n++)
+	//{
+	//	std::cout << x[n][0] << ", ";
+	//}
+	std::cout << airplane.plane.eul.phi * 180 / M_PI << ", " << airplane.plane.eul.psi * 180 / M_PI << ", " << airplane.plane.eul.theta * 180 / M_PI << "\n";
+
+
+	//std::cout << "\n";
+	//std::cout << pot << ", " << j_x << ", " << j_y << "\n";
 }
 
 // Driver function for the entire simulation
